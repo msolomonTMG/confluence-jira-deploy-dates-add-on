@@ -44,20 +44,7 @@
               </p>
           </form>
             <table id="version-table" class="aui aui-table-interactive">
-                {{#each versions}}
-                    <tr class='sport' data-sport='{{id}}'>
-                        <td>{{name}}</td>
-                        <td>{{userReleaseDate}}</td>
-                        <td>{{status}}</td>
-                    </tr>
-                {{/each}}
 
-                {{#each sports}}
-                    <tr class='sport' data-sport='{{id}}'>
-                        <td class='sport-icon'><img src='{{localBaseUrl}}/{{icon}}' height='32' width='32'></td>
-                        <td>{{name}}</td>
-                    </tr>
-                {{/each}}
             </table>
         </div>
     </div>
@@ -87,7 +74,7 @@
 
       let projectKey = $('#async-project-single-select').val()
       $('#version-table').empty()
-      $.get('{{localBaseUrl}}test/' + projectKey, function(versions) {
+      $.get('{{localBaseUrl}}versions/' + projectKey, function(versions) {
         console.log(versions)
         versions.forEach((version, index) => {
           $('#version-table').append(`
