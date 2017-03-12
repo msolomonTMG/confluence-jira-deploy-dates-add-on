@@ -31,7 +31,6 @@ module.exports = function (app, addon) {
 
     function getFixVersionsByProject(project) {
       return new Promise(function(resolve, reject) {
-        //TODO:make these env variables
         var url = `http://${username}:${password}@thrillistmediagroup.atlassian.net/rest/api/2/project/${project}/versions`;
 
         request({url: url}, function (error, response, body) {
@@ -59,7 +58,6 @@ module.exports = function (app, addon) {
 
     function getFixVersionById(id) {
       return new Promise(function(resolve, reject) {
-        //TODO:make these env variables
         var url = `http://${username}:${password}@thrillistmediagroup.atlassian.net/rest/api/2/version/${id}`;
 
         request({url: url}, function (error, response, body) {
