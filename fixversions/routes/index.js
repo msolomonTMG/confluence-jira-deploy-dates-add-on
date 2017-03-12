@@ -5,8 +5,8 @@ module.exports = function (app, addon) {
     var util = require('util');
     var request = require('request');
     var credentials = require('../credentials.json');
-    var username = process.env.JIRA_USER;
-    var password = process.env.JIRA_PASSWORD;
+    var username = process.env.JIRA_USERNAME || credentials.jira.username;
+    var password = process.env.JIRA_PASSWORD || credentials.jira.password;
 
     app.get('/', function (req, res) {
         res.format({
