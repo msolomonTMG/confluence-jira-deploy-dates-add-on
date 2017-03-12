@@ -11,6 +11,12 @@
     <link rel="stylesheet" href="/css/main.css" type="text/css"/>
     <script src="{{baseUrl}}/atlassian-connect/all-debug.js" type="text/javascript"></script>
     <script src="/js/jquery-1.7.min.js" type="text/javascript"></script>
+    <!-- Experiemental Scripts and CSS -->
+    <script src="//aui-cdn.atlassian.com/aui-adg/6.0.6/js/aui.js"></script>
+    <script src="//aui-cdn.atlassian.com/aui-adg/6.0.6/js/aui-experimental.js"></script>
+    <script src="//aui-cdn.atlassian.com/aui-adg/6.0.6/js/aui-datepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="//aui-cdn.atlassian.com/aui-adg/6.0.6/css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="//aui-cdn.atlassian.com/aui-adg/6.0.6/css/aui-experimental.css"/>
 </head>
 <body>
 
@@ -25,7 +31,19 @@
 
     <div class="aui-page-panel">
         <div class="aui-page-panel-inner">
-            <table class="aui aui-table-interactive">
+          <form class="aui">
+              <aui-label for="async-project-single-select">Search for JIRA Project:</aui-label>
+              <p>
+                  <aui-select
+                      id="async-project-single-select"
+                      name="project"
+                      placeholder="Start typing your JIRA project name..."
+                      src="{{localBaseUrl}}search/project"
+                      value="type to trigger async"
+                  ></aui-select>
+              </p>
+          </form>
+            <table id="version-table" class="aui aui-table-interactive">
                 {{#each versions}}
                     <tr class='sport' data-sport='{{id}}'>
                         <td>{{name}}</td>
@@ -56,29 +74,62 @@
     var sport = getQueryParam("sport");
     $("table.aui tr.sport[data-sport=" + sport + "]").addClass('active');
 
-    // save out newly selected macro param value on submit
-    AP.require(["confluence", "dialog"], function (confluence, dialog) {
+    var versionBaseSrc = "{{localBaseUrl}}search/version/";
 
-        function onSubmit() {
-            var sport = $("table.aui .sport.active").data('sport'),
-                    macroParams = {
-                      sport: sport
-                    };
-            console.log('MACRO PARAMS')
-            console.log(macroParams)
-            confluence.saveMacro(macroParams);
-            confluence.closeMacroEditor();
-            return true;
-        }
+    $('#async-project-single-select').change(function(e) {
+      /*
+       * sometimes this change method gets called twice
+       * instead of figuring out why, i do a ratchet check instead
+       * to make sure that the value was in fact changed
+      */
+      if(this.value==this.oldvalue)return;
+      this.oldvalue=this.value;
 
-        $("tr.sport").click(function () {
-            $("table.aui .active").removeClass("active");
-            $(this).closest("tr.sport").addClass('active');
-            onSubmit();
-        });
+      let projectKey = $('#async-project-single-select').val()
+      $('#version-table').empty()
+      $.get('{{localBaseUrl}}test/' + projectKey, function(versions) {
+        console.log(versions)
+        versions.forEach((version, index) => {
+          $('#version-table').append(`
+            <tr class='sport' data-sport='${version.id}'>
+                <td>${version.name}</td>
+                <td>${version.userReleaseDate}</td>
+                <td>${version.status}</td>
+            </tr>`)
 
-        dialog.getButton("submit").bind(onSubmit);
+          // once we are done appending all the rows, init the table
+          if (index + 1 === versions.length) {
+            initTable();
+          }
+        })
+      })
     });
+
+    function initTable() {
+      // save out newly selected macro param value on submit
+      AP.require(["confluence", "dialog"], function (confluence, dialog) {
+
+          function onSubmit() {
+              var sport = $("table.aui .sport.active").data('sport'),
+                      macroParams = {
+                        sport: sport
+                      };
+              console.log('MACRO PARAMS')
+              console.log(macroParams)
+              confluence.saveMacro(macroParams);
+              confluence.closeMacroEditor();
+              return true;
+          }
+
+          $("tr.sport").click(function () {
+              $("table.aui .active").removeClass("active");
+              $(this).closest("tr.sport").addClass('active');
+              onSubmit();
+          });
+
+          dialog.getButton("submit").bind(onSubmit);
+      });
+    }
 </script>
 </body>
 </html>
