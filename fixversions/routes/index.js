@@ -167,38 +167,6 @@ module.exports = function (app, addon) {
         });
     });
 
-    //end point to send json of project versions for autocomplete on the edit page
-    app.get('/search/version/:projectKey', function (req, res) {
-      res.setHeader('Content-Type', 'application/json');
-      let projectKey = req.params.projectKey
-
-      var url = `http://${username}:${password}@thrillistmediagroup.atlassian.net/rest/api/2/project/${projectKey}/versions`;
-
-      request({url: url}, function (error, response, body) {
-        if(!error) {
-          let rawVersions = JSON.parse(body)
-          let versions = []
-          rawVersions.forEach( (version, index) => {
-            let formattedVersion = {}
-            if (_.has(version, 'userReleaseDate')) {
-              formattedVersion.userReleaseDate = version.userReleaseDate
-            } else {
-              formattedVersion.userReleaseDate = 'TBD'
-            }
-            formattedVersion.label = version.name + "-" + formattedVersion.userReleaseDate;
-            formattedVersion.value = version.id;
-            versions.push(formattedVersion);
-
-            if (index + 1 === rawVersions.length) {
-              res.send(JSON.stringify(versions))
-            }
-          })
-        } else {
-          res.send(error)
-        }
-      });
-    })
-
     //end point to send json of projects for autocomplete on the edit page
     app.get('/search/project', function(req, res) {
       res.setHeader('Content-Type', 'application/json');
