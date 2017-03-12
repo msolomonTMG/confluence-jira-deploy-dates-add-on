@@ -1,0 +1,40 @@
+/* main app styles */
+.intro-header h1 {
+  font-size: 48px;
+  line-height: 60px;
+  padding-top: 20px;
+}
+.intro-header p.subtitle {
+  font-size: 24px;
+  line-height: 30px;
+  padding-bottom: 20px;
+}
+.main-panel .aui-page-panel-item {
+  padding: 20px 40px 20px 0;
+  height: 100px;
+}
+
+table.aui,
+table.aui tbody,
+table.aui tr.sport,
+table.aui tr.sport td {
+    border: none !important;
+}
+
+table.aui tr.sport:hover {
+    cursor: pointer;
+    background-color: #ffe9a8 !important;
+}
+
+table.aui tr.sport.active {
+    background-color: #89c495 !important;
+}
+
+table.aui .sport td {
+    vertical-align: middle;
+}
+
+table.aui .sport td.sport-icon {
+    width: 48px;
+    height: 48px;
+}
