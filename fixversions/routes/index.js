@@ -132,7 +132,8 @@ module.exports = function (app, addon) {
         })
     });
 
-    app.get('/test/:projectKey', function (req, res) {
+    // gets versions by project keys async
+    app.get('/versions/:projectKey', function (req, res) {
         res.setHeader('Content-Type', 'application/json');
         // Rendering a template is easy. `render()` takes two params: name of template and a
         // json object to pass the context in.
