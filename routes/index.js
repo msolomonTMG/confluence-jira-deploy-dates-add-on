@@ -4,9 +4,8 @@ module.exports = function (app, addon) {
     var _ = require('lodash');
     var util = require('util');
     var request = require('request');
-    var credentials = require('../credentials.json');
-    var username = process.env.JIRA_USERNAME || credentials.jira.username;
-    var password = process.env.JIRA_PASSWORD || credentials.jira.password;
+    var username = process.env.JIRA_USERNAME;
+    var password = process.env.JIRA_PASSWORD;
 
     app.get('/', function (req, res) {
         res.format({
