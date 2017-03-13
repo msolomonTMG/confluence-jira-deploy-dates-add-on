@@ -48,12 +48,12 @@
                 "editor": {
                     "url": "/editor",
                     "editTitle": {
-                        "value": "Edit your favourite sport"
+                        "value": "Select JIRA Version to Render Deploy Date"
                     },
                     "insertTitle": {
-                        "value": "Choose your favourite sport"
+                        "value": "Select JIRA Version to Render Deploy Date"
                     },
-                    "height": "600px",
+                    "height": "100%",
                     "width": "600px"
                 },
                 "imagePlaceholder": { "url": "/images/icons/icon.png" }
