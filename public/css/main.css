@@ -1,4 +1,7 @@
 /* main app styles */
+body {
+  background-color: #fff !important;
+}
 .intro-header h1 {
   font-size: 48px;
   line-height: 60px;
