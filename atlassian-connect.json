@@ -1,10 +1,10 @@
 {
-    "key": "my-add-on",
-    "name": "Ping Pong",
-    "description": "My very first add-on",
+    "key": "deploy-date",
+    "name": "Deploy Date",
+    "description": "Render deploy dates from JIRA versions",
     "vendor": {
-        "name": "Angry Nerds",
-        "url": "https://www.atlassian.com/angrynerds"
+        "name": "Mike Solomon",
+        "url": "http://mike-solomon.com/"
     },
     "baseUrl": "{{localBaseUrl}}",
     "links": {
@@ -24,12 +24,12 @@
         "dynamicContentMacros": [
             {
                 "name": {
-                    "value": "Macro whose content is rendered by an iframe"
+                    "value": "JIRA Version deploy date"
                 },
                 "description": {
-                    "value": "Render a macro in a page with an iframe"
+                    "value": "Render a deploy date from a version in JIRA"
                 },
-                "key": "dynamic-sport-macro",
+                "key": "deploy-date",
                 "url": "/macro-page?pageId={page.id}&userId={user.id}&spaceKey={space.key}&sport={sport}",
                 "categories": ["development"],
                 "documentation": {
@@ -44,7 +44,7 @@
                     "height": 16,
                     "width": 16
                 },
-                "alias": "dynamic-macro",
+                "alias": "deploy-date",
                 "editor": {
                     "url": "/editor",
                     "editTitle": {
