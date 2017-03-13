@@ -8,8 +8,8 @@
     },
     "baseUrl": "{{localBaseUrl}}",
     "links": {
-        "self": "{{localBaseUrl}}atlassian-connect.json",
-        "homepage": "{{localBaseUrl}}atlassian-connect.json"
+        "self": "{{localBaseUrl}}/atlassian-connect.json",
+        "homepage": "{{localBaseUrl}}/atlassian-connect.json"
     },
     "authentication": {
         "type": "jwt"
