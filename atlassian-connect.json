@@ -37,8 +37,8 @@
                 },
                 "outputType": "inline",
                 "bodyType": "rich-text",
-                "height": "80px",
-                "width": "200px",
+                "height": "20px",
+                "width": "100px",
                 "icon": {
                     "url": "/images/icons/icon.png",
                     "height": 16,
