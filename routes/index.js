@@ -134,10 +134,6 @@ module.exports = function (app, addon) {
     // gets versions by project keys async
     app.get('/versions/:projectKey', function (req, res) {
         res.setHeader('Content-Type', 'application/json');
-        // Rendering a template is easy. `render()` takes two params: name of template and a
-        // json object to pass the context in.
-
-        //TODO: make a variable req.param('project')
         let projectKey = req.params.projectKey
         getFixVersionsByProject(projectKey).then(versions => {
           res.send(JSON.stringify(versions))
