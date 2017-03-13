@@ -1,9 +1,9 @@
 {
-    "key": "my-add-on",
-    "name": "Ping Pong",
-    "description": "My very first add-on",
+    "key": "deploy-date",
+    "name": "Deploy Dates",
+    "description": "Render a deploy date from a version in JIRA",
     "vendor": {
-        "name": "Angry Nerds",
+        "name": "Mike Solomon",
         "url": "https://www.atlassian.com/angrynerds"
     },
     "baseUrl": "{{localBaseUrl}}",
@@ -21,39 +21,15 @@
         "READ"
     ],
     "modules": {
-        "generalPages": [
-            {
-                "key": "hello-world-page-jira",
-                "location": "system.top.navigation.bar",
-                "name": {
-                    "value": "Hello World"
-                },
-                "url": "/hello-world",
-                "conditions": [{
-                    "condition": "user_is_logged_in"
-                }]
-            },
-            {
-                "key": "hello-world-page-confluence",
-                "location": "system.header/left",
-                "name": {
-                    "value": "Hello World"
-                },
-                "url": "/hello-world",
-                "conditions": [{
-                    "condition": "user_is_logged_in"
-                }]
-            }
-        ],
         "dynamicContentMacros": [
             {
                 "name": {
-                    "value": "Macro whose content is rendered by an iframe"
+                    "value": "Render a deploy date from a version in JIRA"
                 },
                 "description": {
-                    "value": "Render a macro in a page with an iframe"
+                    "value": "Render a deploy date from a version in JIRA"
                 },
-                "key": "dynamic-sport-macro",
+                "key": "deploy-date",
                 "url": "/macro-page?pageId={page.id}&userId={user.id}&spaceKey={space.key}&sport={sport}",
                 "categories": ["development"],
                 "documentation": {
@@ -68,14 +44,14 @@
                     "height": 16,
                     "width": 16
                 },
-                "alias": "dynamic-macro",
+                "alias": "deploy-date",
                 "editor": {
                     "url": "/editor",
                     "editTitle": {
-                        "value": "Edit your favourite sport"
+                        "value": "Edit the version for the deploy date"
                     },
                     "insertTitle": {
-                        "value": "Choose your favourite sport"
+                        "value": "Choose the version to render the deploy date"
                     },
                     "height": "600px",
                     "width": "600px"
