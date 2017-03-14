@@ -117,6 +117,13 @@ module.exports = function (app, addon) {
         renderMacro(req, res);
     });
 
+    app.get('/render-date-pdf', addon.authenticate(), function (req, res) {
+      var requestVersion = req.param('sport');
+      getFixVersionById(requestVersion).then(version => {
+        res.send(sport.userReleaseDate)
+      })
+    });
+
     app.get('/editor', addon.authenticate(), function (req, res) {
         // Rendering a template is easy. `render()` takes two params: name of template and a
         // json object to pass the context in.
