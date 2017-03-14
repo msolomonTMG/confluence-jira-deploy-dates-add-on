@@ -35,6 +35,11 @@
                 "documentation": {
                     "url": "https://developer.atlassian.com/static/connect/docs"
                 },
+                "renderModes": {
+                  "pdf": {
+                    "url": "/render-date-pdf"
+                  }
+                },
                 "outputType": "inline",
                 "bodyType": "rich-text",
                 "height": "80px",
