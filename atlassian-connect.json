@@ -21,7 +21,7 @@
         "READ"
     ],
     "modules": {
-        "dynamicContentMacros": [
+        "staticContentMacros": [
             {
                 "name": {
                     "value": "JIRA Version deploy date"
@@ -34,11 +34,6 @@
                 "categories": ["development"],
                 "documentation": {
                     "url": "https://developer.atlassian.com/static/connect/docs"
-                },
-                "renderModes": {
-                  "pdf": {
-                    "url": "/render-date-pdf"
-                  }
                 },
                 "outputType": "inline",
                 "bodyType": "rich-text",
