@@ -62,6 +62,7 @@ module.exports = function (app, addon) {
         request({url: url}, function (error, response, body) {
           if(!error) {
             let version = JSON.parse(body)
+            console.log(version)
             if (_.has(version, 'userReleaseDate') === false) {
               version.userReleaseDate = 'TBD'
             }
