@@ -76,18 +76,26 @@ module.exports = function (app, addon) {
 
     function renderMacro(req, res) {
         var requestVersion = req.param('sport');
-        getFixVersionById(requestVersion).then(version => {
-          res.render('macro/macro-view', {
-              //versionDate: version
-              sport: version
-          });
-        }).catch(err => {
+        if (requestVersion) {
+          getFixVersionById(requestVersion).then(version => {
+            res.render('macro/macro-view', {
+                //versionDate: version
+                sport: version
+            });
+          }).catch(err => {
+            res.render('macro/macro-view', {
+              sport: {
+                userReleaseDate: 'no jira version'
+              }
+            })
+          })
+        } else {
           res.render('macro/macro-view', {
             sport: {
               userReleaseDate: 'no jira version'
             }
           })
-        })
+        }
         console.log('PARAMS')
         console.log(req.params)
         console.log('RENDERING MACRO')
