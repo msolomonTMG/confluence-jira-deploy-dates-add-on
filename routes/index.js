@@ -30,7 +30,7 @@ module.exports = function (app, addon) {
 
     function getFixVersionsByProject(project) {
       return new Promise(function(resolve, reject) {
-        var url = `http://${username}:${password}@thrillistmediagroup.atlassian.net/rest/api/2/project/${project}/versions`;
+        var url = `http://${username}:${password}@nowthis.atlassian.net/rest/api/2/project/${project}/versions`;
 
         request({url: url}, function (error, response, body) {
           if(!error) {
@@ -57,7 +57,7 @@ module.exports = function (app, addon) {
 
     function getFixVersionById(id) {
       return new Promise(function(resolve, reject) {
-        var url = `http://${username}:${password}@thrillistmediagroup.atlassian.net/rest/api/2/version/${id}`;
+        var url = `http://${username}:${password}@nowthis.atlassian.net/rest/api/2/version/${id}`;
 
         request({url: url}, function (error, response, body) {
           if(!error) {
@@ -180,7 +180,7 @@ module.exports = function (app, addon) {
     //end point to send json of projects for autocomplete on the edit page
     app.get('/search/project', function(req, res) {
       res.setHeader('Content-Type', 'application/json');
-      var url = `http://${username}:${password}@thrillistmediagroup.atlassian.net/rest/api/2/project`;
+      var url = `http://${username}:${password}@nowthis.atlassian.net/rest/api/2/project`;
 
       request({url: url}, function (error, response, body) {
         if(!error) {
