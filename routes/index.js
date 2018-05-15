@@ -37,8 +37,8 @@ module.exports = function (app, addon) {
             let rawVersions = JSON.parse(body)
             let versions = []
             rawVersions.forEach(version => {
-              if (_.has(version, 'userReleaseDate') === false) {
-                version.userReleaseDate = 'TBD'
+              if (_.has(version, 'releaseDate') === false) {
+                version.releaseDate = 'TBD'
               }
               if (version.released) {
                 version.status = "Released"
